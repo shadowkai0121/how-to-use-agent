@@ -19,18 +19,18 @@ created: 2026-03-27
 |----------|-------|
 | **Framework** | `node:test` bundled with Node 24 LTS |
 | **Config file** | `none — Wave 0 installs` |
-| **Quick run command** | `node --test tests/phase3/*.test.mjs` |
-| **Full suite command** | `node --test tests/**/*.test.mjs` |
-| **Estimated runtime** | ~45 seconds |
+| **Quick run command** | `node --test tests/phase-03/readme-generation.test.mjs tests/phase-03/epub-build.test.mjs tests/phase-03/drift-detection.test.mjs` |
+| **Full suite command** | `node --test tests/phase-03/*.test.mjs` |
+| **Estimated runtime** | ~25 seconds |
 
 ---
 
 ## Sampling Rate
 
-- **After every task commit:** Run `node --test tests/phase3/*.test.mjs`
-- **After every plan wave:** Run `node --test tests/**/*.test.mjs`
+- **After every task commit:** Run `node --test tests/phase-03/readme-generation.test.mjs tests/phase-03/epub-build.test.mjs tests/phase-03/drift-detection.test.mjs`
+- **After every plan wave:** Run `node --test tests/phase-03/*.test.mjs`
 - **Before `$gsd-verify-work`:** Full suite must be green
-- **Max feedback latency:** 45 seconds
+- **Max feedback latency:** 25 seconds
 
 ---
 
@@ -38,15 +38,15 @@ created: 2026-03-27
 
 | Task ID | Plan | Wave | Requirement | Test Type | Automated Command | File Exists | Status |
 |---------|------|------|-------------|-----------|-------------------|-------------|--------|
-| 03-01-01 | 01 | 1 | PUBL-01 | unit/integration | `node --test tests/phase3/readme-generation.test.mjs` | ❌ W0 | ⬜ pending |
-| 03-01-02 | 01 | 1 | PUBL-02 | integration | `node --test tests/phase3/epub-build.test.mjs` | ❌ W0 | ⬜ pending |
-| 03-01-03 | 01 | 1 | PUBL-04 | integration | `node --test tests/phase3/link-and-asset-validation.test.mjs` | ❌ W0 | ⬜ pending |
-| 03-02-01 | 02 | 2 | PUBL-01 | integration | `node --test tests/phase3/readme-generation.test.mjs` | ❌ W0 | ⬜ pending |
-| 03-02-02 | 02 | 2 | PUBL-02 | integration | `node --test tests/phase3/epub-build.test.mjs` | ❌ W0 | ⬜ pending |
-| 03-02-03 | 02 | 2 | QUAL-03 | integration | `node --test tests/phase3/drift-detection.test.mjs` | ❌ W0 | ⬜ pending |
-| 03-03-01 | 03 | 3 | PUBL-03 | integration/smoke | `node --test tests/phase3/epub-validation.test.mjs` | ❌ W0 | ⬜ pending |
-| 03-03-02 | 03 | 3 | QUAL-02 | unit/integration | `node --test tests/phase3/placeholder-gate.test.mjs` | ❌ W0 | ⬜ pending |
-| 03-03-03 | 03 | 3 | PUBL-04 | integration | `node --test tests/phase3/link-and-asset-validation.test.mjs` | ❌ W0 | ⬜ pending |
+| 03-01-01 | 01 | 1 | PUBL-01 | unit/integration | `node --test tests/phase-03/readme-generation.test.mjs` | ❌ W0 | ⬜ pending |
+| 03-01-02 | 01 | 1 | PUBL-02 | integration | `node --test tests/phase-03/epub-build.test.mjs` | ❌ W0 | ⬜ pending |
+| 03-01-03 | 01 | 1 | PUBL-04 | integration | `node --test tests/phase-03/link-and-asset-validation.test.mjs` | ❌ W0 | ⬜ pending |
+| 03-02-01 | 02 | 2 | PUBL-01 | integration | `node --test tests/phase-03/readme-generation.test.mjs` | ❌ W0 | ⬜ pending |
+| 03-02-02 | 02 | 2 | PUBL-02 | integration | `node --test tests/phase-03/epub-build.test.mjs` | ❌ W0 | ⬜ pending |
+| 03-02-03 | 02 | 2 | QUAL-03 | integration | `node --test tests/phase-03/drift-detection.test.mjs` | ❌ W0 | ⬜ pending |
+| 03-03-01 | 03 | 3 | PUBL-03 | integration/smoke | `node --test tests/phase-03/epub-validation.test.mjs` | ❌ W0 | ⬜ pending |
+| 03-03-02 | 03 | 3 | QUAL-02 | unit/integration | `node --test tests/phase-03/placeholder-gate.test.mjs` | ❌ W0 | ⬜ pending |
+| 03-03-03 | 03 | 3 | PUBL-04 | integration | `node --test tests/phase-03/link-and-asset-validation.test.mjs` | ❌ W0 | ⬜ pending |
 
 *Status: ⬜ pending · ✅ green · ❌ red · ⚠️ flaky*
 
@@ -55,12 +55,12 @@ created: 2026-03-27
 ## Wave 0 Requirements
 
 - [ ] `package.json` — declare Node 24+/pnpm scripts for build and verification
-- [ ] `tests/phase3/readme-generation.test.mjs` — stubs for PUBL-01
-- [ ] `tests/phase3/epub-build.test.mjs` — stubs for PUBL-02
-- [ ] `tests/phase3/epub-validation.test.mjs` — stubs for PUBL-03
-- [ ] `tests/phase3/link-and-asset-validation.test.mjs` — stubs for PUBL-04
-- [ ] `tests/phase3/placeholder-gate.test.mjs` — stubs for QUAL-02
-- [ ] `tests/phase3/drift-detection.test.mjs` — stubs for QUAL-03
+- [ ] `tests/phase-03/readme-generation.test.mjs` — stubs for PUBL-01
+- [ ] `tests/phase-03/epub-build.test.mjs` — stubs for PUBL-02
+- [ ] `tests/phase-03/epub-validation.test.mjs` — stubs for PUBL-03
+- [ ] `tests/phase-03/link-and-asset-validation.test.mjs` — stubs for PUBL-04
+- [ ] `tests/phase-03/placeholder-gate.test.mjs` — stubs for QUAL-02
+- [ ] `tests/phase-03/drift-detection.test.mjs` — stubs for QUAL-03
 - [ ] `tools/` or documented bootstrap path for Pandoc / EPUBCheck / Java
 - [ ] local runtime upgrade path from Node `v18.18.0` to Node 24 LTS
 
@@ -75,13 +75,27 @@ created: 2026-03-27
 
 ---
 
+## Generated Output Coverage
+
+| Artifact | Link / Asset Coverage | Placeholder Coverage | EPUB / Drift Coverage |
+|----------|-----------------------|----------------------|-----------------------|
+| `README.md` | `scripts/verify-links.mjs --tier local|pr|release` | `scripts/verify-placeholders.mjs` | `scripts/verify-drift.mjs` |
+| `book/frontmatter/**/*.md` | `scripts/verify-links.mjs --tier local|pr|release` | `scripts/verify-placeholders.mjs` | source of truth for drift snapshot |
+| `book/chapters/**/*.md` | `scripts/verify-links.mjs --tier local|pr|release` | `scripts/verify-placeholders.mjs` | source of truth for drift snapshot |
+| `book/appendices/**/*.md` | `scripts/verify-links.mjs --tier local|pr|release` | `scripts/verify-placeholders.mjs` | source of truth for drift snapshot |
+| `dist/epub/cover.md` | `scripts/verify-links.mjs --tier pr|release` | `scripts/verify-placeholders.mjs` | generated by `scripts/build-epub.mjs` |
+| `dist/epub/how-to-use-agent.snapshot.json` | generated-asset references checked by `scripts/verify-links.mjs --tier release` | `scripts/verify-placeholders.mjs` | compared by `scripts/verify-drift.mjs` |
+| `dist/epub/how-to-use-agent.epub` | existence checked by `scripts/verify-links.mjs --tier release` | n/a | validated by `scripts/verify-epub.mjs` |
+
+---
+
 ## Validation Sign-Off
 
 - [ ] All tasks have `<automated>` verify or Wave 0 dependencies
 - [ ] Sampling continuity: no 3 consecutive tasks without automated verify
 - [ ] Wave 0 covers all MISSING references
 - [ ] No watch-mode flags
-- [ ] Feedback latency < 45s
+- [ ] Feedback latency < 30s
 - [ ] `nyquist_compliant: true` set in frontmatter
 
 **Approval:** pending
