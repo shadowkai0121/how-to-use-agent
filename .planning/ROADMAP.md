@@ -78,7 +78,12 @@ Plans:
   1. 讀者可依章節理解 antigravity 與 GSD 的基本互動節奏與操作上下文。
   2. 讀者可直接複製章節中的 prompt、命令與範例，逐步推進實作。
   3. 每一章都提供 checkpoint，讓讀者能確認目前 repo 狀態、頁面結果或下一步條件。
-**Plans**: TBD
+**Plans**: 3 plans
+
+Plans:
+- [ ] 04-01-PLAN.md — 建立 Agent 教學循環契約、驗證腳本與 Phase 4 測試骨架
+- [ ] 04-02-PLAN.md — 完成前言與第 1-4 章的協作教學主線
+- [ ] 04-03-PLAN.md — 完成第 5-7 章、README 同步與 fresh-clone 教學驗證
 
 ### Phase 5: FV 計算機成果與公開部署
 **Goal**: 讀者可以完成 FV 計算機並把成果公開部署到 GitHub Pages。  

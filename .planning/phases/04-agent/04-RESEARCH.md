@@ -1,8 +1,8 @@
 # Phase 4: Agent 協作教學主線 - Research
 
 **Researched:** 2026-03-27
-**Domain:** docs-first, task-driven tutorial design for Agent collaboration
-**Confidence:** HIGH
+**Domain:** docs-first 的 Agent 協作教學主線、可複製操作、checkpoint 與回正提示
+**Confidence:** MEDIUM
 
 <user_constraints>
 ## User Constraints (from CONTEXT.md)
@@ -10,49 +10,29 @@
 ### Locked Decisions
 ### 教學主線與章節骨架
 - 教學主線採任務驅動，從一開始就圍著 FV 計算機任務往前推進，而不是先講工具概論。
-- 章節以任務成果分章，但每章內固定帶一輪協作節奏。
-- 每章的寫法採最短可執行步驟優先，先讓讀者做出結果，再補最少必要解釋。
-- 每章開頭要先寫清楚本章會產出的具體成果，再補這一章會練到的協作能力。
+- 每章以任務成果分章，但章內固定帶一輪協作節奏。
+- 每章開頭先交代本章會產出的具體成果，再說明本章會練到的協作能力。
+- phase 4 聚焦教學節奏、可複製操作與回正機制，不延伸成完整的 GSD 指令教學。
 
-### 協作流程 framing
-- phase 4 先照 GSD 的開發流程來教讀者協作節奏，但不正式展開 GSD 指令操作。
-- 文案上先不用強打 `GSD` 名稱，優先用自然語言表達規劃、執行、驗收等流程節拍。
-- 章內對協作對象統一稱為 `Agent`，不混用品牌名或工具名。
-- `antigravity` 不作為章節主體品牌來強調，重點放在「和 Agent 對話協作」本身。
+### 協作 framing 與命名
+- 章內協作對象統一稱為 `Agent`，不混用品牌名稱。
+- 文案優先用自然語言表達規劃、執行、驗收的節拍，再視需要輕量提到 `antigravity` / `GSD`。
+- `antigravity` 不作為章節主體品牌強打，重點是如何和 Agent 協作。
 
-### Prompt 與命令呈現方式
-- 章內 prompt / 命令以可直接複製的最短版本作為主呈現。
-- 主文先放當下章節可直接使用的具體實例版，再補充如何改寫成自己的版本。
-- 較長的 prompt / 命令要分段呈現，讓每段都能單獨理解與複製。
-- 章內排版以實際操作順序為主，但每段都要用明顯標籤區分 `Prompt` 與 `Command`。
+### Prompt / Command / Checkpoint 呈現
+- 章內 prompt 與 command 以可直接複製的最短版本為主，不先給抽象模板。
+- 較長 prompt / command 要拆段呈現，讓每段都有獨立用途。
+- 每章只要有實作就必須有 checkpoint，且結果驗收優先於 repo 狀態驗收。
+- checkpoint 後要緊貼可直接救火的回正 prompt，避免讀者在偏掉時繼續往前。
 
-### Checkpoint 設計
-- 只要章內有實作，就要提供 checkpoint，不只在章尾集中驗收。
-- checkpoint 的優先順序是先確認畫面或行為結果，再確認 repo 狀態，最後才確認是否可安全進到下一步。
-- checkpoint 的主體採結果加 repo 證據的形式，但結果驗收必須放在最前面。
-- 若該章只能驗證局部成果，仍要以最小可觀察結果作為正式 checkpoint，而不是延後到下一章再驗。
-- checkpoint 語氣偏驗收清單，讓讀者能快速比對自己是否達標。
-
-### 卡關回正方式
-- 當 Agent 回應偏掉、做太多或做錯方向時，章內要先給可直接救火的回正 prompt，再補如何判斷偏差與自行修正。
-- 當 repo 狀態與章節預期不一致時，優先引導讀者退回最近 checkpoint，而不是直接進行模糊補救。
-- 回正內容要緊貼在各章 checkpoint 後面，讓讀者在出錯當下就能修正。
-- 補救策略偏保守，寧可回到上一個安全點，也不要帶著錯誤繼續往下做。
-
-### 解釋深度與章內密度
-- phase 4 先不追求深入原理解釋，結果做出來後只補最少必要說明。
-- 教學密度偏實作導向，避免長篇概念說明打斷任務前進節奏。
-
-### Claude's Discretion
-- 各章固定協作節奏的具體小標題命名與版型。
-- `Prompt` / `Command` 區塊的視覺樣式與標示格式。
-- 每章 checkpoint 的具體條列模板，只要維持成果優先、repo 證據次之即可。
-- 回正 prompt 的具體措辭與示例長度。
+### 解釋深度
+- 先讓讀者做出結果，再補最少必要解釋。
+- 避免長篇工具理論打斷任務推進節奏。
 
 ### Deferred Ideas (OUT OF SCOPE)
-- 正式的 GSD 指令操作與 workflow 命令教學 — 留到下一個 milestone。
-- 更深入的「為什麼這樣和 Agent 協作」原理解析 — 留到後續 milestone 或補充章節深化。
-- 更強調 `antigravity` 或 `GSD` 品牌名稱的產品導向教學寫法 — 不屬於本 phase 的主體。
+- 正式的 GSD workflow / `$gsd-*` 指令教學。
+- 更深入的協作理論或 prompt engineering 長篇解析。
+- 以品牌導向為主的 antigravity / GSD 產品介紹。
 </user_constraints>
 
 <phase_requirements>
@@ -60,387 +40,270 @@
 
 | ID | Description | Research Support |
 |----|-------------|-----------------|
-| TUTO-01 | 讀者可以依照章節理解 antigravity 與 GSD 的基本互動節奏與操作上下文 | Fixed chapter rhythm, outcome-first openings, natural-language plan/execute/check framing, and chapter-level collaboration capability labels |
-| TUTO-02 | 讀者可以依照章節中的可複製 prompt、命令與範例逐步完成 FV 計算機 | Copy-ready prompt/command blocks, segmented long prompts, expected-result notes, and example-first then adaptation-second pattern |
-| TUTO-05 | 每一章都提供 checkpoint，讓讀者確認目前 repo 狀態、頁面結果或下一步條件 | In-flow checkpoints, result-first verification order, adjacent recovery prompts, and safe-point rollback guidance |
+| TUTO-01 | 讀者可以依照章節理解 antigravity 與 GSD 的基本互動節奏與操作上下文 | 每章固定協作 loop、以成果驅動的章節 framing、最少必要術語 |
+| TUTO-02 | 讀者可以依照章節中的可複製 prompt、命令與範例逐步完成 FV 計算機 | Prompt/Command 區塊、分段可複製內容、章與章之間的 handoff |
+| TUTO-05 | 每一章都提供 checkpoint，讓讀者確認目前 repo 狀態、頁面結果或下一步條件 | 結果優先的 checkpoint、repo 證據、下一步閘門、回正 prompt |
 </phase_requirements>
 
 ## Summary
 
-Phase 4 should not be planned as "write several chapters." It should be planned as a tutorial system with one repeatable collaboration rhythm that gets reused across chapters. The most important planning move is to standardize the reader loop first: chapter outcome, minimal context, `Prompt`, `Command`, expected result, checkpoint, then recovery prompt. Once that loop is fixed, actual chapter writing becomes execution against a known contract instead of ad hoc prose.
+Phase 4 最適合被規劃成「同一個教學 loop 重複七次」，而不是每章各講一種不同寫法。前 3 個 phase 已經鎖定 canonical content tree、README/EPUB 雙輸出與 manifest 單一真相來源，所以這一 phase 不需要重新設計內容架構；真正要補的是教學互動 contract：每章如何定義本章成果、如何給可直接複製的 Prompt/Command、如何做結果優先的 checkpoint，以及偏掉時怎麼回正。
 
-The tutorial should teach collaboration by letting the reader make visible progress on the FV calculator, not by front-loading Agent theory. Official documentation guidance converges on short numbered procedures, one best path, action-before-explanation, and samples that are runnable, concise, and explicit about setup and expected results. For this phase, that means every chapter must anchor to a smallest observable outcome and every prompt or command block must tell the reader what to expect next.
+最穩的做法是把教學 loop 本身做成可驗證契約，而不是只靠作者風格自律。每章應固定包含這一組 heading 或區塊概念：`## 本章產出`、`## 你會練到什麼`、`## Prompt`、`## Command`、`## Checkpoint`、`## 卡關先這樣回正`。其中 `Prompt` 必須只放對 Agent 說的話，`Command` 只放終端機指令，不能混在同一個 code block；`Checkpoint` 必須先寫讀者應看到的頁面、檔案或行為結果，再寫 repo 證據；`卡關先這樣回正` 則要緊接 checkpoint，直接提供一段可以複製去拉回 Agent 的 prompt。
 
-The main risk is reproducibility drift. A docs-first tutorial fails when prompts, commands, checkpoints, chapter order, and actual repo state stop matching. Planning therefore needs a dedicated validation layer for chapter block structure, required checkpoint presence, and stale repo references. Do not leave drift control to editorial review alone.
+內容拆分上，最合理的是三個 plans。Wave 1 先建立 Phase 4 驗證腳本與測試骨架，把 tutorial loop 的最小 contract 鎖死。Wave 2 再完成前言與第 1 到第 4 章，讓讀者先學會讀書方式、工作台、用 antigravity 對齊範圍、以及用 GSD 的 phase 思維拆工作。Wave 3 才把第 5 到第 7 章補齊，讓教學主線從「開始協作」一路銜接到 FV 計算機互動介面、驗證與 GitHub Pages 發布，同時跑一次 fresh-clone walkthrough 驗證 prompt / command / checkpoint 真的能照書走。
 
-**Primary recommendation:** Split Phase 4 into three plans: define the reusable tutorial block contract, author the chapter content against that contract, then add validation that enforces prompt/command/checkpoint/recovery structure and repo-state reproducibility.
+**Primary recommendation:** 不新增新的內容系統或 DSL，直接沿用 `book/manifest.json`、既有章節檔與 Phase 3 的 README/EPUB builders，額外加上一個 `scripts/verify-phase4.mjs` 與 `tests/phase-04/*.test.mjs`，把教學 loop、可複製區塊與 checkpoint / recovery contract 變成機器可檢查的規則。
 
 ## Standard Stack
 
 ### Core
 | Library | Version | Purpose | Why Standard |
 |---------|---------|---------|--------------|
-| GitHub Flavored Markdown | Current GitHub GFM | Canonical chapter source for tutorial steps, prompts, commands, checkpoints, and recovery prompts | The repo is itself a reading surface, so the tutorial contract must stay inside documented GitHub-readable Markdown. |
-| Existing chapter manifest contract | Phase 1/2 canonical contract | Chapter-level outcome, summary, checkpoint summary, milestone, and ordering metadata | Phase 4 should extend the existing single source of truth instead of inventing chapter-local metadata islands. |
-| markdownlint-cli2 | 0.22.0 | Enforce consistent heading, list, and block ordering for tutorial chapters | A block-heavy tutorial degrades quickly without machine checks for structure. |
-| Prettier | 3.8.1 | Keep Markdown formatting deterministic for generated or templated tutorial blocks | Stable formatting reduces noisy diffs when block templates are reused across chapters. |
+| Node.js | 24 LTS | 驗證腳本與 `node:test` 執行環境 | Phase 3 已鎖定 Node 24 作為 repo automation runtime，Phase 4 應沿用。 |
+| `node:test` | bundled | tutorial structure / checkpoint / recovery contract tests | 不需要額外 test framework；這些測試主要是文字內容與結構驗證。 |
+| GFM Markdown | GitHub-compatible | 正式章節、README、EPUB 共用內容源 | Phase 2 / 3 已鎖定，Phase 4 不應分叉到另一套格式。 |
 
 ### Supporting
-| Library | Version | Purpose | When to Use |
-|---------|---------|---------|-------------|
-| HTML comments in GFM | Supported in current GFM | Mark machine-detectable block boundaries such as tutorial-step or recovery sections | Use if validation scripts need stable anchors without changing reader-visible copy. |
-| `node:test` | Node built-in in project runtime | Fast content-contract tests for chapter structure and manifest/tutorial consistency | Use for Phase 4 validation because no external test runner exists yet. |
+| Tool | Version | Purpose | When to Use |
+|------|---------|---------|-------------|
+| existing `scripts/build-readme.mjs` | repo-local | 將 Phase 4 教學內容同步到 root README | 每次調整前言 / manifest summary / README 入口資訊後 |
+| existing `scripts/build-epub.mjs` | repo-local | 確認 Prompt/Command/Checkpoint 在 EPUB 也可閱讀 | 每次完成 Wave 3 內容整合後 |
+| existing `scripts/verify-drift.mjs` | repo-local | 防止 README / EPUB 與 canonical 章節分叉 | 作為 Phase 4 full gate 的一部分 |
+| existing `scripts/validate-authoring.mjs` | repo-local | 確保章節仍符合 GFM / placeholder / 術語 contract | 每次新增或改寫章節內容時 |
 
 ### Alternatives Considered
 | Instead of | Could Use | Tradeoff |
 |------------|-----------|----------|
-| Fixed chapter rhythm template | Freeform chapter prose | Freeform writing feels flexible, but it makes reader load, validation, and recovery behavior inconsistent. |
-| Example-first prompt blocks | Abstract prompt-writing theory before action | Theory-first creates cognitive load before the reader has any progress to anchor to. |
-| Local recovery after each checkpoint | One large troubleshooting appendix | Appendix-only recovery is cheaper to write, but it arrives too late for in-flow correction. |
-
-**Installation:**
-```bash
-npm install -D markdownlint-cli2@0.22.0 prettier@3.8.1
-```
-
-**Version verification:** Verified from the npm registry on 2026-03-27.
-- `markdownlint-cli2` `0.22.0` published 2026-03-22
-- `prettier` `3.8.1` published 2026-01-21
+| 直接在章節內手寫自由格式教學 | 固定 tutorial loop contract | 自由格式較快，但會立刻犧牲可複製性與跨章一致性。 |
+| 在 manifest 再增加大量 prompt / command metadata | 把教學塊直接寫在章節 Markdown 內 | Prompt / command / recovery 需要保留自然語言上下文，硬塞進 manifest 會讓 authoring 體驗更差。 |
+| 只靠人工 review 檢查 checkpoint | `verify-phase4` + phase tests | 人工 review 容易漏掉某章忘了寫 recovery 或把 prompt / command 混在一起。 |
 
 ## Architecture Patterns
 
-### Recommended Project Structure
-```text
-.
-├── chapters/                         # Canonical tutorial chapter Markdown
-├── book/manifest.json                # Chapter order and chapter-level metadata
-├── scripts/
-│   ├── validate-tutorial-structure.mjs
-│   └── validate-tutorial-references.mjs
-└── tests/
-    └── phase-04/
-```
-
-### Pattern 1: Fixed Collaboration Rhythm Per Chapter
-**What:** Every practical chapter uses the same teaching loop so the reader learns the collaboration motion by repetition.
-**When to use:** In every chapter that advances the FV calculator or repo state.
+### Pattern 1: Repeating Tutorial Loop Per Chapter
+**What:** 每章都走相同節奏：成果、能力、Prompt、Command、Checkpoint、Recovery。  
+**When to use:** 只要該章有實作或 repo 狀態變化，就完整套用。  
 **Example:**
-~~~markdown
-## 本章會完成什麼
-- 讓畫面出現第一個可見的 FV 計算機骨架
-
-## 這章會練到的協作能力
-- 把需求說成 Agent 可執行的最小任務
-
-## Step 1: 先請 Agent 規劃最小變更
-### Prompt
-```text
-請先不要一次做完整功能。
-先幫我規劃這一章的最小可見成果：
-- 只建立 HTML 結構
-- 暫時不用 CSS 細節
-- 說明你會改哪些檔案
+```markdown
+## 本章產出
+## 你會練到什麼
+## Prompt
+## Command
+## Checkpoint
+## 卡關先這樣回正
 ```
 
-### 預期結果
-- Agent 先列出要改的檔案與最小範圍，而不是直接展開完整實作
-
-### Command
-```bash
-git status --short
-```
-
-### Checkpoint
-- 畫面：你知道這一章只追求「有骨架可見」
-- Repo：工作樹仍是你預期的狀態
-- 下一步：可以接受 Agent 開始修改
-
-### 回正 Prompt
-```text
-先停在規劃，不要直接實作全部功能。
-請只列出這一步的最小變更、會動到的檔案、以及完成後我應該看到什麼。
-```
-~~~
-
-### Pattern 2: Prompt and Command Are Separate Content Types
-**What:** `Prompt` is for the Agent conversation, `Command` is for the terminal. They should never be blended into one undifferentiated code block.
-**When to use:** Always. This is a core readability and reproducibility requirement.
+### Pattern 2: Prompt and Command Must Be Separated
+**What:** 對 Agent 說的內容與終端機執行的內容各自獨立標示。  
+**When to use:** 一律使用，避免讀者把 prompt 貼進 terminal 或反過來。  
 **Example:**
-~~~markdown
-### Prompt
+```markdown
+## Prompt
 ```text
-請根據目前 repo 狀態，只補上最小可用的輸入欄位與按鈕。
-完成後告訴我你改了哪些檔案，以及我應該怎麼驗收。
+請先幫我閱讀 book/manifest.json 與 README，然後只列出接下來 3 個最小步驟。
 ```
 
-### Command
+## Command
 ```bash
-git diff --stat
+npm run build:readme
+node scripts/verify-phase4.mjs
 ```
-~~~
+```
 
 ### Pattern 3: Result-First Checkpoints
-**What:** Checkpoints verify the visible or behavioral result first, then repo evidence, then whether it is safe to continue.
-**When to use:** After every step that changes files, behavior, or reader expectations.
+**What:** checkpoint 先寫讀者應看見的行為或畫面，再寫 repo 證據，最後寫是否可安全進下一步。  
+**When to use:** 每章至少一次；如果章內有多個明顯狀態轉折，可多次使用。  
 **Example:**
-~~~markdown
-### Checkpoint
-- 結果：頁面上已經看得到本金、利率、期數欄位與「計算」按鈕
-- Repo 證據：`git diff --stat` 只顯示本章預期的檔案
-- 可繼續條件：你知道下一章會接著補計算邏輯，而不是重做結構
-~~~
-
-### Pattern 4: Recovery Is Attached to the Failing Step
-**What:** Put the recovery prompt immediately after the checkpoint for the same step.
-**When to use:** After every checkpoint where prompt drift, over-building, or repo mismatch is plausible.
-**Example:**
-~~~markdown
-### 回正 Prompt
-```text
-你剛剛做超過這一章的範圍了。
-請回到目前已完成的畫面結果，只保留本章需要的最小變更。
-列出應該撤回的檔案或段落，再重新給我最小版本。
+```markdown
+## Checkpoint
+- 你應該已經能在 README 看到更新後的章節入口與摘要。
+- `git diff -- README.md book/chapters/03-用 antigravity 對齊範圍與下一步.md` 只顯示本章預期變更。
+- 若兩項都成立，再進入下一章。
 ```
-~~~
 
-### Pattern 5: Chapter-Level Metadata, Step-Level Body Content
-**What:** Keep chapter outcomes, summary checkpoints, and milestone flags in manifest metadata; keep detailed prompts and commands in the chapter body.
-**When to use:** Always. This preserves the Phase 1/2 single-source metadata rule.
+### Pattern 4: Recovery Prompt Lives Next To The Checkpoint
+**What:** 章內一出現 checkpoint，就要緊跟一段最短可複製的救火 prompt。  
+**When to use:** 一律使用；不要把補救策略集中到章尾 FAQ。  
 **Example:**
-```json
-{
-  "id": "agent-rhythm-intro",
-  "title": "先讓 Agent 跟你對齊最小任務",
-  "summary": "用最小 prompt 帶出規劃、實作與驗收節奏。",
-  "checkpoint": "你已能分辨何時該先請 Agent 規劃，何時才進入實作。",
-  "milestone": null,
-  "tutorialCapability": "把任務縮成 Agent 可執行的最小步驟"
-}
+```text
+你剛剛做的內容超出這一章範圍了。請退回到上一個 checkpoint，只保留 README 與 book/chapters/03-用 antigravity 對齊範圍與下一步.md 的變更，然後重新列出本章剩下的 2 個最小步驟。
+```
+
+### Pattern 5: Fresh-Clone Walkthrough As Final Proof
+**What:** 用乾淨 repo 狀態照著章節走一次，檢查 prompt、command、checkpoint 是否真的可重現。  
+**When to use:** Phase 4 收尾時；這是 TUTO-02 / TUTO-05 的真實驗收。  
+**Example:**
+```text
+clone -> install -> read chapter -> copy Prompt -> run Command -> compare Checkpoint
 ```
 
 ### Anti-Patterns to Avoid
-- **Theory-first chapter openings:** Do not start chapters with long tool explanations before the reader sees the chapter outcome.
-- **Mixed prompt/command blocks:** Do not force the reader to infer whether a block goes to the Agent or the terminal.
-- **Checkpoint only at chapter end:** Do not let multiple irreversible steps accumulate before the first verification point.
-- **Recovery in a separate appendix only:** Do not make readers search elsewhere during failure.
-- **Chapter-local metadata drift:** Do not duplicate outcome or checkpoint summary in front matter when manifest already owns chapter-level control data.
-
-### Planning Implications
-- **Plan 1 should define the tutorial contract:** lock the chapter skeleton, block labels, manifest metadata additions, and the rules for step ordering.
-- **Plan 2 should write the actual Phase 4 content:** populate each tutorial chapter with copy-ready prompt/command/checkpoint/recovery blocks following the contract.
-- **Plan 3 should add drift checks:** validate every practical chapter contains the required blocks, uses the labels consistently, and references repo paths or commands that actually exist in the project.
+- **Tool essay before action:** 先講長篇 antigravity / GSD 理論會破壞任務推進感。
+- **Prompt 與 command 混寫:** 讀者會不知道哪段是對 Agent 說、哪段是對 shell 說。
+- **Checkpoint 只有 repo 指令沒有結果描述:** 這違反「結果優先」的 locked decision。
+- **Recovery prompt 太抽象:** `請修好剛剛的問題` 不足以救火，必須指出要退回哪個 checkpoint、保留哪些檔案。
+- **Phase boundary creep:** 把完整部署教學或進階 GSD 命令說明塞進前半章，會模糊 Phase 4 / 5 分工。
 
 ## Don't Hand-Roll
 
 | Problem | Don't Build | Use Instead | Why |
 |---------|-------------|-------------|-----|
-| Per-chapter teaching rhythm | Different prose style in every chapter | One reusable tutorial block contract | Readers learn the collaboration motion by repetition; inconsistency increases cognitive load. |
-| Prompt adaptation guidance | Open-ended "rewrite this however you want" advice | Concrete example first, short adaptation note second | Novices need a working base prompt before customization. |
-| Recovery flow | Vague prose like "fix it and continue" | Explicit rollback-to-checkpoint guidance plus rescue prompt | Conservative recovery is more reproducible than improvisation. |
-| Drift detection | Manual editorial review only | Content-structure tests and reference checks | Structural drift is predictable and cheap to catch automatically. |
-| Repo-state verification | Custom freeform checklists per chapter | Shared result-first checkpoint template | Shared ordering makes the tutorial easier to scan and test. |
+| 章節節奏一致性 | 純人工 checklist | `scripts/verify-phase4.mjs` + `tests/phase-04/*.test.mjs` | 這類結構規則很適合機器檢查。 |
+| README 同步 | 直接手改 root `README.md` | 更新 canonical 章節 / manifest 後重新跑 `npm run build:readme` | Phase 3 已鎖定 README 是 generated artifact。 |
+| EPUB 顯示驗收 | 只看 Markdown 原文 | 重新跑 `npm run build:epub` 再人工閱讀 | Prompt / code block / alert 在 EPUB 中可能出現不同換行與可讀性問題。 |
+| 教學 metadata | 再做第二份章節控制檔 | 延用 `book/manifest.json` 的 summary / checkpoint / milestones | 多一份 metadata 只會製造 drift。 |
 
-**Key insight:** The expensive failure mode in this phase is not bad prose. It is losing the one-to-one mapping between chapter steps, repo state, and reader-observable results.
+**Key insight:** Phase 4 的新東西不是新的 build system，而是「教學互動 contract」。把 contract 做成文字結構規則與 phase tests，比再引入一套內容工具更有效。
 
 ## Common Pitfalls
 
-### Pitfall 1: The tutorial teaches tools before it teaches progress
-**What goes wrong:** Readers meet terminology and workflow concepts before they have any success signal, so the tutorial feels abstract and heavy.
-**Why it happens:** Writers naturally want to explain the system before letting the reader act.
-**How to avoid:** Open with the chapter outcome and the smallest task, then explain only the minimum framing needed for that task.
-**Warning signs:** The first screen of a chapter has no concrete output, file change, or visible result.
+### Pitfall 1: 每章都像獨立文章，沒有共同節奏
+**What goes wrong:** 讀者在第 2 章後還是不知道每章該先看哪一段、做哪一步。  
+**Why it happens:** 作者只顧著各章內容，不先定教學 loop。  
+**How to avoid:** 先建 `verify-phase4` 與 Phase 4 tests，再填內容。  
+**Warning signs:** 某些章只有敘述，沒有 Prompt 或 Recovery。
 
-### Pitfall 2: Readers cannot tell what goes to the Agent versus the terminal
-**What goes wrong:** Copy-paste errors rise because the tutorial visually blurs prompts and commands together.
-**Why it happens:** Both are often rendered as code fences without explicit type labels.
-**How to avoid:** Treat `Prompt` and `Command` as separate block types with stable headings and ordering.
-**Warning signs:** A chapter contains unlabeled fenced blocks or combines natural-language instructions and shell commands in one block.
+### Pitfall 2: Prompt 太長，不能分段複製
+**What goes wrong:** 讀者一次貼超長 prompt，Agent 容易超做、偏題，讀者也不會切分意圖。  
+**Why it happens:** 想把上下文一次塞滿。  
+**How to avoid:** 一章只保留當下最短可執行 prompt，長 prompt 拆成多段並加上用途說明。  
+**Warning signs:** 一個 code block 包了目標、限制、驗收、回正所有內容。
 
-### Pitfall 3: Checkpoints prove repo state but not user-visible progress
-**What goes wrong:** Readers may have a clean diff but still not see the expected page behavior, so they keep going with a broken mental model.
-**Why it happens:** Repository evidence is easier to author than explicit visual or behavioral outcomes.
-**How to avoid:** Start every checkpoint with the visible or behavioral result, then add repo evidence, then state the safe-to-continue condition.
-**Warning signs:** Checkpoints begin with `git status` and never mention what the reader should see.
+### Pitfall 3: Checkpoint 只剩 `git status`
+**What goes wrong:** 讀者 repo 狀態看起來沒錯，但畫面或輸出其實不對。  
+**Why it happens:** 寫 checkpoint 比較容易想到檔案證據，不容易想到使用者視角結果。  
+**How to avoid:** 規定 checkpoint 第一條必須是可觀察結果，第二條才是 repo 證據。  
+**Warning signs:** checkpoint 沒有 `README`, `頁面`, `輸出`, `你應該看到` 類型語句。
 
-### Pitfall 4: Recovery advice is detached from the point of failure
-**What goes wrong:** When Agent output drifts or repo state diverges, the reader has to hunt for generic troubleshooting advice and loses momentum.
-**Why it happens:** Recovery is deferred to a later appendix to keep the main chapter clean.
-**How to avoid:** Put one local rescue prompt immediately after each checkpoint where the likely failure mode is known.
-**Warning signs:** The only recovery guidance lives outside the chapter or speaks in generic terms like "ask the Agent to fix it."
+### Pitfall 4: Recovery prompt 離失敗點太遠
+**What goes wrong:** 讀者卡住時需要回頭翻頁找補救方法，心智負擔上升。  
+**Why it happens:** 把補救集中在 FAQ 或附錄。  
+**How to avoid:** 每個 checkpoint 後面緊跟 recovery prompt。  
+**Warning signs:** 章內提到「如果錯了請看後面補充」。
 
-### Pitfall 5: The tutorial references a repo state that no longer exists
-**What goes wrong:** Prompts mention files, paths, or outputs that drift from the repo and Phase 1/2/3 contracts, making the chapter feel non-reproducible.
-**Why it happens:** Tutorial prose evolves separately from manifest data, build constraints, or actual sample files.
-**How to avoid:** Validate file-path references, keep chapter-level metadata in manifest, and make Phase 4 tests fail on missing required blocks or stale repo references.
-**Warning signs:** The chapter says "you should see file X" but file X does not exist anywhere in the repo or planned example app.
-
-### Pitfall 6: Overlong prompts hide the actual reader decision
-**What goes wrong:** The prompt becomes a mini-spec that is hard to scan, hard to adapt, and easy to misuse.
-**Why it happens:** Writers try to make one prompt handle planning, implementation, explanation, and edge cases at once.
-**How to avoid:** Break long prompts into purpose-specific blocks and keep each one attached to a single step.
-**Warning signs:** A prompt block spans many paragraphs, mixes multiple chapter goals, or contains backup plans that belong in recovery instead.
+### Pitfall 5: Phase 4 內容吃掉 Phase 5
+**What goes wrong:** 第 5 到第 7 章已把所有實作細節做完，Phase 5 沒有清楚的執行空間。  
+**Why it happens:** 為了滿足 TUTO-02，把完整實作與部署細節全提前。  
+**How to avoid:** Phase 4 著重「協作節奏與可複製操作」，Phase 5 再把最終程式碼、計算驗證與公開部署做滿。  
+**Warning signs:** 章節開始大量展開與 phase goal 無關的 API 或 CSS 細節。
 
 ## Code Examples
 
-Verified patterns from official sources and project constraints:
+Verified repo-local patterns to reuse:
 
-### Chapter Opening Template
-~~~markdown
-## 本章會完成什麼
-- [一個可觀察的成果]
-
-## 這章會練到的協作能力
-- [一個明確的 Agent 協作能力]
-
-## 開始之前
-- 你目前應該已完成：[上一章 checkpoint 摘要]
-~~~
-
-### Step Template With Prompt, Command, Result, Checkpoint, Recovery
-~~~markdown
-## Step [N]: [單一步驟標題]
-
-### Prompt
-```text
-[這一步可直接複製給 Agent 的最短 prompt]
-```
-
-### 預期結果
-- [這一步完成後，Agent 應該先做或先說什麼]
-
-### Command
+### Phase 4 Gate Command
 ```bash
-[這一步需要的終端命令]
+node scripts/verify-phase4.mjs
+node --test tests/phase-04/*.test.mjs
 ```
 
-### Checkpoint
-- 結果：[讀者應看到的畫面、行為或輸出]
-- Repo 證據：[工作樹、檔案、路徑或差異]
-- 可繼續條件：[下一步是否安全]
-
-### 回正 Prompt
+### Copyable Prompt Block
 ```text
-[若 Agent 偏題、做太多或 repo 狀態不對時的最短救火 prompt]
+請先閱讀 book/chapters/03-用 antigravity 對齊範圍與下一步.md，然後只幫我列出這一章要做的 3 個最小步驟，不要直接改檔。
 ```
-~~~
 
-### Segmented Long Prompt Pattern
-~~~markdown
-### Prompt
+### Copyable Command Block
+```bash
+npm run build:readme
+npm run build:epub
+```
+
+### Recovery Prompt
 ```text
-先只做這一步，不要一次完成整章。
-目標：
-- [目標 1]
-- [目標 2]
-
-限制：
-- 只改 [檔案或範圍]
-- 不要先做 [下一章內容]
-
-完成後請回覆：
-- 改了哪些檔案
-- 我應該怎麼驗收
+你剛剛跨到下一章了。請退回上一個 checkpoint，只保留本章檔案的變更，重新列出這一章剩下的步驟與驗收條件。
 ```
-~~~
 
 ## State of the Art
 
-| Old Approach | Current Approach | When Changed | Impact |
-|--------------|------------------|--------------|--------|
-| Tool overview before first action | Task-first tutorial with an immediate smallest outcome | Established modern docs guidance for procedures and tutorials | Phase 4 should start chapters with outcomes and steps, not concept lectures. |
-| One monolithic prompt per chapter | Short, role- and goal-constrained prompts tied to one step | Strengthened by current LLM writing guidance | Readers can copy safely and diagnose drift faster. |
-| Chapter-end validation only | In-flow checkpoints after each meaningful action | Standard task-doc practice | Readers detect divergence before it compounds. |
-| Generic troubleshooting appendix | Local recovery prompts attached to the failing step | Current task-doc and tutorial support expectations | Recovery becomes actionable in the moment instead of after abandonment. |
-| Freeform sample snippets | Explicit setup, expected results, and tested minimal samples | Current sample-code guidance | Tutorial blocks become easier to reproduce and maintain. |
+| Old Approach | Current Approach | Impact |
+|--------------|------------------|--------|
+| 教學章節自由格式 | per-chapter tutorial loop contract | 提高可預測性與可複製性 |
+| 靠人工看內容有沒有 prompt / checkpoint | phase-specific verification script + tests | 可以在 CI / local gate 及早攔下缺漏 |
+| README 入口手工寫摘要 | 由 canonical content + builder 同步輸出 | 降低入口頁與章節主線分叉 |
 
 **Deprecated/outdated:**
-- Long concept-first chapters that delay the first visible result.
-- Unlabeled fenced blocks that force readers to infer prompt versus command.
-- Recovery advice that depends on readers improvising with the Agent.
+- 直接在 `README.md` 維護主線教學摘要，繞過 canonical `book/` 內容。
+- 把 checkpoint 視為章尾總結，而不是當下是否能安全前進的閘門。
 
 ## Open Questions
 
-1. **Which chapter-level metadata should Phase 4 add to the manifest?**
-   - What we know: outcome summaries and checkpoint summaries belong at chapter level, not step level.
-   - What's unclear: whether a dedicated `tutorialCapability` field is worth formalizing now.
-   - Recommendation: add only the minimum metadata that downstream generators or validators need; keep detailed step prose in chapter bodies.
+1. **第 5 到第 7 章的實作深度要畫在哪裡，才不會吃掉 Phase 5？**
+   - What we know: Phase 4 必須讓讀者沿章節推進 FV 計算機主線，但不擴張成完整最終交付。
+   - Recommendation: Phase 4 先把協作節奏、可複製 prompt / command、checkpoint / recovery 契約完整寫出；Phase 5 再把最終實作品質與部署交付做滿。
 
-2. **How much repo-state specificity belongs in checkpoints before the FV example app exists in Phase 5?**
-   - What we know: `TUTO-05` requires repo evidence, but Phase 4 does not yet deliver the full FV implementation.
-   - What's unclear: whether Phase 4 checkpoints should reference placeholder files, planned file names, or only current tutorial artifacts.
-   - Recommendation: plan checkpoints around the smallest current artifact that truly exists in the repo at each step; avoid speculative file references.
+2. **是否要把 recovery prompt 也寫進 manifest？**
+   - What we know: summary / checkpoint / milestones 已在 manifest。
+   - Recommendation: 不要。recovery prompt 與章節上下文高度耦合，留在章節 Markdown 內更自然。
 
-3. **Should repo snapshots or tags be included now?**
-   - What we know: progress snapshots are useful, but they are listed as `SUPP-03` in v2 rather than Phase 4 requirements.
-   - What's unclear: whether lightweight snapshot references are needed to make recovery credible.
-   - Recommendation: keep snapshots out of scope for Phase 4 plans unless validation shows checkpoints alone are insufficient.
+3. **fresh-clone walkthrough 的最低通過條件是什麼？**
+   - What we know: 要能照章節複製 prompt / command 前進，並用 checkpoint 發現偏差。
+   - Recommendation: 至少確認第 1、3、5、7 章都能在乾淨狀態下完成一輪「複製 prompt -> 執行 command -> 對照 checkpoint」。
 
 ## Validation Architecture
 
 ### Test Framework
 | Property | Value |
 |----------|-------|
-| Framework | `node:test` plus Markdown structure checks |
-| Config file | none - see Wave 0 |
-| Quick run command | `node --test tests/phase-04/*.test.mjs` |
-| Full suite command | `node --test && npx markdownlint-cli2 "**/*.md"` |
+| Framework | `node:test` bundled with Node 24 LTS |
+| Config file | `none — Phase 4 adds tests/phase-04 helpers and a dedicated gate script` |
+| Quick run command | `node --test tests/phase-04/chapter-loop-contract.test.mjs tests/phase-04/checkpoint-recovery.test.mjs` |
+| Full suite command | `node scripts/verify-phase4.mjs && node --test tests/phase-04/*.test.mjs && npm run build:readme && npm run build:epub && node scripts/verify-drift.mjs` |
+| Estimated runtime | ~20 seconds |
 
 ### Phase Requirements → Test Map
 | Req ID | Behavior | Test Type | Automated Command | File Exists? |
 |--------|----------|-----------|-------------------|-------------|
-| TUTO-01 | Each practical chapter declares a concrete outcome, a collaboration capability, and uses the fixed collaboration rhythm in order | integration | `node --test tests/phase-04/tutorial-rhythm.test.mjs` | ❌ Wave 0 |
-| TUTO-02 | Every actionable step contains copy-ready `Prompt` or `Command` blocks plus an expected-result note that supports step-by-step progress | integration | `node --test tests/phase-04/copy-ready-blocks.test.mjs` | ❌ Wave 0 |
-| TUTO-05 | Every practical chapter contains result-first checkpoints and adjacent recovery prompts | integration | `node --test tests/phase-04/checkpoints-and-recovery.test.mjs` | ❌ Wave 0 |
+| TUTO-01 | 每章有固定協作 loop，讀者看得出規劃 / 執行 / 驗收節奏 | structure | `node --test tests/phase-04/chapter-loop-contract.test.mjs` | ❌ Wave 0 |
+| TUTO-02 | 每章提供可直接複製的 prompt / command / example，且順序能串成主線 | integration/content | `node --test tests/phase-04/copyable-steps.test.mjs` | ❌ Wave 0 |
+| TUTO-05 | 每章有結果優先 checkpoint 與緊鄰的 recovery prompt | structure/content | `node --test tests/phase-04/checkpoint-recovery.test.mjs` | ❌ Wave 0 |
 
 ### Sampling Rate
-- **Per task commit:** `node --test tests/phase-04/*.test.mjs`
-- **Per wave merge:** `node --test && npx markdownlint-cli2 "**/*.md"`
-- **Phase gate:** Full suite green before `/gsd:verify-work`
+- **Per task commit:** `node --test tests/phase-04/chapter-loop-contract.test.mjs tests/phase-04/checkpoint-recovery.test.mjs`
+- **Per wave merge:** `node scripts/verify-phase4.mjs && node --test tests/phase-04/*.test.mjs`
+- **Phase gate:** full suite command green + fresh-clone walkthrough checkpoint completed
 
 ### Wave 0 Gaps
-- [ ] `package.json` — define `test` and Markdown validation scripts
-- [ ] `tests/phase-04/tutorial-rhythm.test.mjs` — covers `TUTO-01`
-- [ ] `tests/phase-04/copy-ready-blocks.test.mjs` — covers `TUTO-02`
-- [ ] `tests/phase-04/checkpoints-and-recovery.test.mjs` — covers `TUTO-05`
-- [ ] `scripts/validate-tutorial-structure.mjs` — parses chapter Markdown for required block order
-- [ ] `scripts/validate-tutorial-references.mjs` — checks file-path and command references against repo reality
+- [ ] `package.json` — declare `test:phase-04`, `verify:phase4`, `check:phase-04`
+- [ ] `scripts/verify-phase4.mjs` — enforce chapter loop / copyable block / checkpoint contract
+- [ ] `tests/phase-04/helpers.mjs` — shared content readers and assertions
+- [ ] `tests/phase-04/chapter-loop-contract.test.mjs` — verifies fixed tutorial headings
+- [ ] `tests/phase-04/copyable-steps.test.mjs` — verifies Prompt / Command / example contract
+- [ ] `tests/phase-04/checkpoint-recovery.test.mjs` — verifies result-first checkpoints and recovery prompts
+
+### Manual-Only Verifications
+| Behavior | Requirement | Why Manual | Test Instructions |
+|----------|-------------|------------|-------------------|
+| 在乾淨 repo 狀態照章節完成至少一輪 copy/paste walkthrough | TUTO-02, TUTO-05 | 真正的可複製性要看讀者是否能按章節順序完成 prompt / command / checkpoint | fresh clone 後依序照第 1、3、5、7 章執行，確認每章的 checkpoint 與 recovery 都可用 |
+| EPUB 中的 Prompt / Command / Checkpoint 區塊可讀性正常 | TUTO-01, TUTO-02 | code block、alert 與段落換行在 EPUB 可能與 GitHub 呈現不同 | 重建 EPUB，打開檢查至少三章的教學區塊可視覺辨識 |
 
 ## Sources
 
 ### Primary (HIGH confidence)
-- Project-local canonical refs:
-  - `.planning/phases/04-agent/04-CONTEXT.md` - locked tutorial-shape decisions and out-of-scope constraints
-  - `.planning/REQUIREMENTS.md` - `TUTO-01`, `TUTO-02`, `TUTO-05`
-  - `.planning/ROADMAP.md` - Phase 4 goal and success criteria
-  - `.planning/PROJECT.md` - docs-first product positioning and FV calculator teaching goal
-  - `.planning/research/SUMMARY.md` - docs-first architecture and fresh-clone walkthrough importance
-  - `.planning/research/FEATURES.md` - copy-ready prompts, task-driven path, and checkpoint expectations
-  - `.planning/research/PITFALLS.md` - drift and non-reproducibility risks
-- Google developer documentation style guide: https://developers.google.com/style/procedures
-  - Checked numbered procedures, one best path, context-before-action ordering, step goals, results, optional-step labeling, and minimizing interruptions.
-- Google Technical Writing Two, Creating sample code: https://developers.google.com/tech-writing/two/sample-code
-  - Checked that sample code should build, perform the claimed task, explain how to run, state expected outputs, and avoid snippet rot.
-- Google Technical Writing Two, Using large language models (LLMs) in technical writing: https://developers.google.com/tech-writing/two/llms
-  - Checked prompt guidance for role, audience, document type, goal, constraints, context, and iterative refinement.
-- GitHub Docs, Basic writing and formatting syntax: https://docs.github.com/en/get-started/writing-on-github/getting-started-with-writing-and-formatting-on-github/basic-writing-and-formatting-syntax
-  - Verified the documented GFM features Phase 4 can safely rely on for readable tutorial blocks.
+- `.planning/phases/04-agent/04-CONTEXT.md`
+- `.planning/ROADMAP.md`
+- `.planning/REQUIREMENTS.md`
+- `.planning/PROJECT.md`
+- `.planning/STATE.md`
+- `.planning/phases/01-reader-entry-and-chapter-topology/01-CONTEXT.md`
+- `.planning/phases/02-authoring-contract-and-localized-content-source/02-CONTEXT.md`
+- `.planning/phases/03-dual-output-build-and-publish-validation/03-CONTEXT.md`
+- `.planning/research/SUMMARY.md`
+- `.planning/research/FEATURES.md`
+- `.planning/research/PITFALLS.md`
 
 ### Secondary (MEDIUM confidence)
-- GitHub Docs, About READMEs: https://docs.github.com/en/repositories/managing-your-repositorys-settings-and-features/customizing-your-repository/about-readmes
-  - Used to reinforce that the repo itself remains a first-class reading surface, so tutorial blocks must stay readable there.
-- npm registry checks performed on 2026-03-27
-  - `markdownlint-cli2` `0.22.0`
-  - `prettier` `3.8.1`
+- Existing Phase 1-3 plan artifacts as repo pattern references
 
 ### Tertiary (LOW confidence)
-- None.
+- None
 
 ## Metadata
 
 **Confidence breakdown:**
-- Standard stack: HIGH - This phase mostly extends already locked Markdown and manifest patterns, and the only package versions used here were verified from the registry.
-- Architecture: HIGH - The fixed tutorial rhythm, result-first checkpoints, and attached recovery prompts are directly supported by project constraints and current official procedure guidance.
-- Pitfalls: HIGH - The main failure modes are visible from the project's own research and are reinforced by official guidance on procedures, sample code, and prompt constraints.
+- Tutorial structure and constraints: HIGH - directly grounded in CONTEXT.md and prior phase decisions.
+- Plan decomposition: MEDIUM - repo patterns are clear, but actual chapter prose depth will still need execution judgment.
+- Validation strategy: MEDIUM - strong fit to repo structure, but final fresh-clone workflow details depend on executed content.
 
 **Research date:** 2026-03-27
 **Valid until:** 2026-04-26
