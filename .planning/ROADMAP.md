@@ -46,7 +46,12 @@ Plans:
   2. 維護者可依明確 GFM 安全寫作規範撰寫標題、連結、程式碼區塊、提示與折疊內容。
   3. 維護者可用統一格式標記待補圖片段落，並保留足夠上下文給後續人工補圖。
   4. 讀者看到的正式內容維持台灣繁體中文，且術語使用一致。
-**Plans**: TBD
+**Plans**: 3 plans
+
+Plans:
+- [ ] 02-01-PLAN.md — 擴充 manifest schema、作者驗證腳本與 Phase 2 測試骨架
+- [ ] 02-02-PLAN.md — 建立 canonical zh-TW 內容樹、中文章節檔與 placeholder 資產分區
+- [ ] 02-03-PLAN.md — 建立 zh-TW termbase、Vale 規則與 Phase 2 完整驗證
 
 ### Phase 3: 雙輸出建置與發佈驗證
 **Goal**: 專案可以從同一組 canonical 章節生成同步的 README 與 EPUB，並在發布前攔截內容與輸出問題。  
