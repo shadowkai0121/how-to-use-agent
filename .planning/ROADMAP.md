@@ -30,7 +30,12 @@ Decimal phases appear between their surrounding integers in numeric order.
   3. 讀者可在各章使用一致的上一章、下一章與回首頁連結完成導覽。
   4. 讀者可清楚辨識哪一章會完成 FV 計算機實作與 GitHub Pages 發布。
   5. 維護者調整單一章節清單後，閱讀順序與輸出順序會同步更新。
-**Plans**: TBD
+**Plans**: 3 plans
+
+Plans:
+- [ ] 01-01-PLAN.md — 建立 manifest schema、Node 驗證入口與 Phase 1 測試骨架
+- [ ] 01-02-PLAN.md — 建立 canonical manifest、七個章節檔與章尾導覽同步
+- [ ] 01-03-PLAN.md — 完成 README 導讀入口並跑過 Phase 1 全驗證
 
 ### Phase 2: 作者寫作契約與在地化內容源
 **Goal**: 維護者可以用一致的 zh-TW GFM 內容源持續撰寫、擴寫與重組本書。  
