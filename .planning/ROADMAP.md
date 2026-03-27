@@ -63,7 +63,12 @@ Plans:
   3. 驗證流程會在章節、`README.md` 或資產路徑失效時明確失敗。
   4. 驗證流程會在 EPUB 損壞或不合規時明確失敗。
   5. 發布前流程會在圖片占位未清除或 `README.md`、章節與 EPUB 核心內容分叉時阻擋輸出。
-**Plans**: TBD
+**Plans**: 3 plans
+
+Plans:
+- [ ] 03-01-PLAN.md — 建立 Phase 3 command contract、tooling helper 與 README/EPUB/validation 測試骨架
+- [ ] 03-02-PLAN.md — 實作 canonical README/EPUB builders、Pandoc defaults 與 drift snapshot gate
+- [ ] 03-03-PLAN.md — 建立 local/PR/release 驗證腳本、GitHub Actions gate 與 EPUB reader smoke test
 
 ### Phase 4: Agent 協作教學主線
 **Goal**: 讀者可以沿著章節掌握 antigravity 與 GSD 的協作節奏，並用可複製操作推進實作。  
