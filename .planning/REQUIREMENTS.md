@@ -73,32 +73,32 @@
 
 | Requirement | Phase | Status |
 |-------------|-------|--------|
-| READ-01 | Unmapped | Pending |
-| READ-02 | Unmapped | Pending |
-| READ-03 | Unmapped | Pending |
-| READ-04 | Unmapped | Pending |
-| CONT-01 | Unmapped | Pending |
-| CONT-02 | Unmapped | Pending |
-| CONT-03 | Unmapped | Pending |
-| CONT-04 | Unmapped | Pending |
-| PUBL-01 | Unmapped | Pending |
-| PUBL-02 | Unmapped | Pending |
-| PUBL-03 | Unmapped | Pending |
-| PUBL-04 | Unmapped | Pending |
-| TUTO-01 | Unmapped | Pending |
-| TUTO-02 | Unmapped | Pending |
-| TUTO-03 | Unmapped | Pending |
-| TUTO-04 | Unmapped | Pending |
-| TUTO-05 | Unmapped | Pending |
-| QUAL-01 | Unmapped | Pending |
-| QUAL-02 | Unmapped | Pending |
-| QUAL-03 | Unmapped | Pending |
+| READ-01 | Phase 1 | Pending |
+| READ-02 | Phase 1 | Pending |
+| READ-03 | Phase 1 | Pending |
+| READ-04 | Phase 1 | Pending |
+| CONT-01 | Phase 2 | Pending |
+| CONT-02 | Phase 1 | Pending |
+| CONT-03 | Phase 2 | Pending |
+| CONT-04 | Phase 2 | Pending |
+| PUBL-01 | Phase 3 | Pending |
+| PUBL-02 | Phase 3 | Pending |
+| PUBL-03 | Phase 3 | Pending |
+| PUBL-04 | Phase 3 | Pending |
+| TUTO-01 | Phase 4 | Pending |
+| TUTO-02 | Phase 4 | Pending |
+| TUTO-03 | Phase 5 | Pending |
+| TUTO-04 | Phase 5 | Pending |
+| TUTO-05 | Phase 4 | Pending |
+| QUAL-01 | Phase 2 | Pending |
+| QUAL-02 | Phase 3 | Pending |
+| QUAL-03 | Phase 3 | Pending |
 
 **Coverage:**
 - v1 requirements: 20 total
-- Mapped to phases: 0
-- Unmapped: 20 ⚠️
+- Mapped to phases: 20
+- Unmapped: 0
 
 ---
 *Requirements defined: 2026-03-27*
-*Last updated: 2026-03-27 after initial definition*
+*Last updated: 2026-03-27 after roadmap creation*
