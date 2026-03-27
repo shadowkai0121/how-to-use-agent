@@ -38,11 +38,12 @@ created: 2026-03-27
 
 | Task ID | Plan | Wave | Requirement | Test Type | Automated Command | File Exists | Status |
 |---------|------|------|-------------|-----------|-------------------|-------------|--------|
-| 1-01-01 | 01 | 1 | CONT-02 | unit | `node --test tests/phase-01/manifest-schema.test.mjs` | ❌ W0 | ⬜ pending |
-| 1-01-02 | 01 | 1 | READ-02 | integration | `node --test tests/phase-01/topology-order.test.mjs` | ❌ W0 | ⬜ pending |
-| 1-02-01 | 02 | 2 | READ-01 | integration | `node --test tests/phase-01/readme-entry.test.mjs` | ❌ W0 | ⬜ pending |
-| 1-02-02 | 02 | 2 | READ-04 | integration | `node --test tests/phase-01/milestone-signaling.test.mjs` | ❌ W0 | ⬜ pending |
-| 1-03-01 | 03 | 2 | READ-03 | integration | `node --test tests/phase-01/chapter-nav.test.mjs` | ❌ W0 | ⬜ pending |
+| 1-01-01 | 01 | 1 | CONT-02 | contract | `powershell -NoProfile -Command "$pkg = Get-Content -Raw 'package.json' | ConvertFrom-Json; $schema = Get-Content -Raw 'book/manifest.schema.json' | ConvertFrom-Json; ..."` | ❌ W0 | ⬜ pending |
+| 1-01-02 | 01 | 1 | READ-01, READ-02, READ-03, READ-04, CONT-02 | scaffold | `powershell -NoProfile -Command "$files = 'tests/phase-01/helpers.mjs','tests/phase-01/manifest-schema.test.mjs','tests/phase-01/topology-order.test.mjs','tests/phase-01/chapter-nav.test.mjs','tests/phase-01/milestone-signaling.test.mjs','tests/phase-01/readme-entry.test.mjs'; foreach ($file in $files) { node --check $file }"` | ❌ W0 | ⬜ pending |
+| 1-02-01 | 02 | 2 | READ-02, CONT-02 | integration | `npm run validate:manifest` | ❌ W0 | ⬜ pending |
+| 1-02-02 | 02 | 2 | READ-03, READ-04 | integration | `node --test tests/phase-01/manifest-schema.test.mjs tests/phase-01/topology-order.test.mjs tests/phase-01/chapter-nav.test.mjs tests/phase-01/milestone-signaling.test.mjs` | ❌ W0 | ⬜ pending |
+| 1-03-01 | 03 | 3 | READ-01 | integration | `node --test tests/phase-01/readme-entry.test.mjs` | ❌ W0 | ⬜ pending |
+| 1-03-02 | 03 | 3 | READ-01, READ-02, READ-03, READ-04, CONT-02 | phase-gate | `npm run sync:topology && npm run validate:manifest && node --test tests/phase-01/*.test.mjs && npm run lint:md` | ❌ W0 | ⬜ pending |
 
 *Status: ⬜ pending · ✅ green · ❌ red · ⚠️ flaky*
 
